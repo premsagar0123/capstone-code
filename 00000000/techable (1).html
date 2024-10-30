@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techable X</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .headerStrip {
+            background-color: #007bbf;
+            /* Blue strip color */
+            padding: 10px 20px;
+            position: relative;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero {
+            background-image: linear-gradient(to bottom right, #060fbca4, #004d40);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+
+        .card {
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #chatbot {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        #chatbotHeader {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #chatMessages {
+            height: 200px;
+            overflow-y: auto;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .userMessage {
+            background-color: #e1ffc7;
+            align-self: flex-end;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .botMessage {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        #chatInput {
+            display: flex;
+            padding: 10px;
+        }
+
+        #chatInput input {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        #voiceBtn {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* New Chat to Audio Section */
+        #textToAudio {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* About and Contact Sections */
+        #aboutUs,
+        #contactUs {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .xyz {
+            display: flex;
+            color: white;
+
+        }
+
+
+
+        .link {
+            color: white;
+            margin-right: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Strip with Logo and Date/Time -->
+    <div class="headerStrip">
+        <img src="Screenshot 2024-09-27 132923.png" alt="Techable X Logo" style="height: 50px;">
+        <!-- Techable X Logo -->
+        <div class="xyz">
+            <a href="login.html" class="link">
+                <div>Login</div>
+            </a>
+            <div id="dateTime"></div>
+        </div>
+    </div>
+
+    <!-- Date and Time in Welcome Section -->
+    <section id="home" class="hero center-align">
+        <div class="container">
+            <h1>Welcome to Techable X</h1>
+            <p>Learn from experts and achieve your goals</p>
+            <a class="waves-effect waves-light btn"
+                onclick="document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });">Explore Courses</a>
+            <!-- Dropdown Menu for Sections -->
+            <div class="dropdown" style="position: absolute; right: 20px; top: 20px;">
+                <button class="btn" style="background-color: transparent; border: none; color: white;">...</button>
+                <div class="dropdown-content">
+                    <a href="blind.html">Blind Section</a>
+                    <a href="deaf.html">Deaf Section</a>
+                    <a href="autistic.html">Autistic Section</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accessible Learning with Techable X</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+
+            }
+
+            .container {
+                margin: 20px auto;
+            }
+
+            .section-content {
+                display: none;
+                /* Hide all sections by default */
+                margin-bottom: 50px;
+            }
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                margin-top: 20px;
+            }
+
+            footer {
+                background-color: #333;
+                color: white;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .active {
+                display: block !important;
+                /* Show active section */
+            }
+
+            h3 {
+                color: #007bff;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Accessible Learning with Techable X</h1>
+            <p>We provide tailored learning experiences for the Blind, Deaf, and Autistic communities.</p>
+
+            <!-- Section Buttons -->
+            <div>
+                <button class="btn" onclick="showSection('blindSection')">Blind Section</button>
+                <button class="btn" onclick="showSection('deafSection')">Deaf Section</button>
+                <button class="btn" onclick="showSection('autisticSection')">Autistic Section</button>
+            </div>
+
+            <!-- Blind Section -->
+            <section id="blindSection" class="section-content">
+                <h2>Blind Section</h2>
+                <p>Our courses are designed to be accessible to visually impaired learners. We offer a variety of
+                    audio-based content and screen reader-compatible materials to ensure a seamless learning experience.
+                </p>
+
+                <!-- Five Video Slots -->
+            
+
+                <div class="video-slot">
+                    <h3>Meme puneet swuper star</h3>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/rCzRwS5o_dY?si=1ui62jWFFMrvRk2T"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 3</h3>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/faIzpFOvyw4?si=klTyQ-rxScyRwWI6"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 4</h3>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/faIzpFOvyw4?si=klTyQ-rxScyRwWI6"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 5</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_blind_section_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <p>Additional audio-based content and text tailored for blind learners.</p>
+            </section>
+
+            <!-- Deaf Section -->
+            <section id="deafSection" class="section-content">
+                <h2>Deaf Section</h2>
+                <p>For learners who are deaf or hard of hearing, we provide sign language-interpreted video content,
+                    captions, and text-based resources that support effective learning.</p>
+
+                <!-- Five Video Slots -->
+                <div class="video-slot">
+                    <h3>Video Topic 1</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_deaf_section_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 2</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_deaf_section_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 3</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_deaf_section_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 4</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_deaf_section_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 5</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_deaf_section_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <p>Sign language videos and captions are available for deaf learners.</p>
+            </section>
+
+            <!-- Autistic Section -->
+            <section id="autisticSection" class="section-content">
+                <h2>Autistic Section</h2>
+                <p>Our autistic-friendly courses are structured with clear communication and predictable routines. We
+                    focus on creating a supportive learning environment tailored to individual needs.</p>
+
+                <!-- Five Video Slots -->
+                <div class="video-slot">
+                    <h3>Video Topic 1</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_autistic_section_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 2</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_autistic_section_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 3</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_autistic_section_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 4</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_autistic_section_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="video-slot">
+                    <h3>Video Topic 5</h3>
+                    <video width="600" controls>
+                        <source src="path_to_your_video_for_autistic_section_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <p>Structured routines and clear communication methods are used for autistic learners.</p>
+            </section>
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #79c4f0;
+                        display: flex;
+                        justify-content: center;
+
+                    }
+
+                    .course-box {
+                        width: 300px;
+                        border: 1px solid #ccc;
+                        padding: 20px;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        border-radius: 10px;
+                        background-color: #fff;
+                        text-align: center;
+                    }
+
+                    .course-box h2 {
+                        font-size: 22px;
+                        margin-bottom: 10px;
+                    }
+
+                    .course-box p {
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                    }
+
+                    .course-box .price {
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 20px;
+                    }
+
+                    .course-box ul {
+                        list-style-type: none;
+                        padding: 0;
+                    }
+
+                    .course-box ul li {
+                        margin-bottom: 10px;
+                        text-align: left;
+                    }
+
+                    .course-box button {
+                        background-color: #28a745;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        margin: 5px;
+                    }
+
+                    .course-box button:hover {
+                        background-color: #218838;
+                    }
+
+                    .course-box .explore-btn {
+                        background-color: #007bff;
+                    }
+
+                    .course-box .explore-btn:hover {
+                        background-color: #0056b3;
+                    }
+                </style>
+                <title>Course Boxes with Explore</title>
+            </head>
+
+            <body>
+
+
+
+                <script>
+                    // Buy Now button functions
+                    function buyBlind() {
+                        alert('Redirecting to the payment page for Blind Section...');
+                    }
+
+                    function buyDeaf() {
+                        alert('Redirecting to the payment page for Deaf Section...');
+                    }
+
+                    function buyAutistic() {
+                        alert('Redirecting to the payment page for Autistic Section...');
+                    }
+
+                    // Explore button functions
+                    function exploreBlind() {
+                        alert('Exploring Blind Section...');
+                        // Here you can redirect to a detailed page about the course
+                        // window.location.href = '/explore-blind';
+                    }
+
+                    function exploreDeaf() {
+                        alert('Exploring Deaf Section...');
+                        // window.location.href = '/explore-deaf';
+                    }
+
+                    function exploreAutistic() {
+                        alert('Exploring Autistic Section...');
+                        // window.location.href = '/explore-autistic';
+                    }
+                </script>
+
+            </body>
+
+            </html>
+
+
+            <!-- Chatbot Section -->
+            <section class="section">
+                <div id="chatbot">
+                    <div id="chatbotHeader">Techable X Assistant</div>
+                    <div id="chatMessages"></div>
+                    <div id="chatInput">
+                        <input type="text" id="userInput" placeholder="Type a message..." />
+                        <button class="btn" id="sendBtn">Send</button>
+                        <button class="btn" id="voiceBtn">🎤</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            // JavaScript function to switch between sections
+            function showSection(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('.section-content').forEach(function (section) {
+                    section.classList.remove('active');
+                });
+
+                // Show the selected section
+                document.getElementById(sectionId).classList.add('active');
+            }
+
+            // Optionally, show the first section by default
+            document.getElementById('blindSection').classList.add('active');
+        </script>
+    </body>
+
+</html>
+
+
+
+<!-- Text to Audio Section -->
+<section class="container" id="textToAudio">
+    <h2>Text to Audio convertor</h2>
+    <input type="text" id="audioInput" placeholder="Type text to convert to audio..." />
+    <button class="btn" id="audioBtn">Convert to Audio</button>
+</section>
+
+<!-- About Us Section -->
+<section class="container" id="aboutUs">
+    <h2>About Us</h2>
+    <p>Techable X is dedicated to providing accessible learning opportunities for everyone. Our mission is to
+        empower individuals through expert-led courses and innovative technology.</p>
+</section>
+
+<!-- Contact Section -->
+<section class="container" id="contactUs">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or feedback, feel free to reach out to us at <a
+            href="mailto:info@techablex.com">info@techablex.com</a>.</p>
+</section>
+
+<footer class="center-align">
+    <p>&copy; 2024 Techable X. All rights reserved.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    // Display Date and Time
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById('dateTime').innerText = now.toLocaleString();
+    }
+    setInterval(updateDateTime, 1000);
+
+    // Chatbot functionality
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Simple chatbot response logic
+    function processBotResponse(userText) {
+        let botResponse = "I didn't understand that. Can you please repeat?";
+        if (userText.toLowerCase().includes('hello')) {
+            botResponse = 'Hello! How can I assist you today?';
+        }
+        displayBotMessage(botResponse);
+    }
+
+    // Display user's message
+    function displayUserMessage(text) {
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('userMessage');
+        userMessage.textContent = text;
+        chatMessages.appendChild(userMessage);
+    }
+
+    // Display bot's message and make it speak
+    function displayBotMessage(text) {
+        const botMessage = document.createElement('div');
+        botMessage.classList.add('botMessage');
+        botMessage.textContent = text;
+        chatMessages.appendChild(botMessage);
+        speakBotMessage(text); // Speak the bot's message
+    }
+
+    // Speak the bot's message
+    function speakBotMessage(text) {
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        synth.speak(utterance);
+    }
+
+    // Handle send button click for text-based messages
+    sendBtn.addEventListener('click', function () {
+        const userText = userInput.value.trim();
+        if (userText) {
+            displayUserMessage(userText);
+            processBotResponse(userText);
+            userInput.value = ''; // Clear input
+        }
+    });
+
+    // Handle voice button click for voice input
+    const voiceBtn = document.getElementById('voiceBtn');
+    voiceBtn.addEventListener('click', function () {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            displayUserMessage(transcript);
+            processBotResponse(transcript);
+        };
+        recognition.start();
+    });
+
+    // Text to Audio Converter
+    const audioInput = document.get``` html 
+
+ < Input" id="audioInput" placeholder="Type text to convert to audio..." />
+        <button class="btn" id="audioBtn">Convert to Audio</button>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="container" id="aboutUs">
+        <h2>About Us</h2>
+        <p>Techable X is dedicated to providing accessible learning opportunities for everyone. Our mission is to empower individuals through expert-led courses and innovative technology.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container" id="contactUs">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or feedback, feel free to reach out to us at <a href="mailto:info@techablex.com">info@techablex.com</a>.</p>
+    </section>
+
+    <footer class="center-align">
+        <p>&copy; 2024 Techable X. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+        // Display Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('dateTime').innerText = now.toLocaleString();
+        }
+        setInterval(updateDateTime, 1000);
+
+        // Chatbot functionality
+        const sendBtn = document.getElementById('sendBtn');
+        const userInput = document.getElementById('userInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Simple chatbot response logic
+        function processBotResponse(userText) {
+            let botResponse = "I didn't understand that. Can you please repeat?";
+            if (userText.toLowerCase().includes('hello')) {
+                botResponse = 'Hello! How can I assist you today?';
+            }
+            displayBotMessage(botResponse);
+        }
+
+        // Display user's message
+        function displayUserMessage(text) {
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('userMessage');
+            userMessage.textContent = text;
+            chatMessages.appendChild(userMessage);
+        }
+
+        // Display bot's message and make it speak
+        function displayBotMessage(text) {
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('botMessage');
+            botMessage.textContent = text;
+            chatMessages.appendChild(botMessage);
+            speakBotMessage(text); // Speak the bot's message
+        }
+
+        // Speak the bot's message
+        function speakBotMessage(text) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(text);
+            synth.speak(utterance);
+        }
+
+        // Handle send button click for text-based messages
+        sendBtn.addEventListener('click', function() {
+            const userText = userInput.value.trim();
+            if (userText) {
+                displayUserMessage(userText);
+                processBotResponse(userText);
+                userInput.value = ''; // Clear input
+            }
+        });
+
+        // Handle voice button click for voice input
+        const voiceBtn = document.getElementById('voiceBtn');
+        voiceBtn.addEventListener('click', function() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                displayUserMessage(transcript);
+                processBotResponse(transcript);
+            };
+            recognition.start();
+        });
+
+        // Text to Audio Converter
+        const audioInput = document.getElementById('audioInput');
+        const audioBtn = document.getElementById('audioBtn');
+
+        audioBtn.addEventListener('click', function() {
+            const textToConvert = audioInput.value.trim();
+            if (textToConvert) {
+                speakAudioText(textToConvert);
+                audioInput.value = ''; // Clear input
+            }
+        });
+
+        // Voice Synthesis for Chat to Audio Converter
+        function speakAudioText(text) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(text);
+            synth.speak(utterance);
+        }
+</script>
+</body>
+       <html>

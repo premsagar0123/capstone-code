@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techable X - User Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .headerStrip {
+            background-color: #007bbf;
+            padding: 10px 20px;
+            position: relative;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero {
+            background-image: linear-gradient(to bottom right, #060fbca4, #004d40);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+
+        .auth-section {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .auth-section .input-field {
+            margin-bottom: 20px;
+        }
+
+        .auth-section button {
+            width: 100%;
+        }
+
+        .switch-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Strip with Logo and Date/Time -->
+    <div class="headerStrip">
+        <img src="Screenshot 2024-09-27 132923.png" alt="Techable X Logo" style="height: 50px;">
+        <div id="dateTime"></div>
+    </div>
+
+    <!-- Authentication Section -->
+    <div class="container">
+        <div id="authForms">
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-section">
+                <h2>Login</h2>
+                <div class="input-field">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button class="btn waves-effect waves-light" id="loginBtn">Login</button>
+                <div class="switch-section">
+                    <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-section" style="display:none;">
+                <h2>Register</h2>
+                <div class="input-field">
+                    <input type="text" id="registerName" placeholder="Full Name" required>
+                </div>
+                <div class="input-field">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="registerPassword" placeholder="Password" required>
+                </div>
+                <button class="btn waves-effect waves-light" id="registerBtn">Register</button>
+                <div class="switch-section">
+                    <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome Section After Login -->
+        <div id="welcomeSection" style="display:none;">
+            <h2>Welcome, <span id="userName"></span>!</h2>
+            <p>You are now logged in.</p>
+            <button class="btn waves-effect waves-light" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <footer class="center-align">
+        <p>&copy; 2024 Techable X. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Switching between login and register forms
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const welcomeSection = document.getElementById('welcomeSection');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const userNameDisplay = document.getElementById('userName');
+
+        // Buttons
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Toggle Forms
+        switchToRegister.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+
+        switchToLogin.addEventListener('click', () => {
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+
+        // Simulated Backend with Local Storage
+        function saveUserData(name, email, password) {
+            localStorage.setItem('user', JSON.stringify({ name, email, password }));
+        }
+
+        function getUserData() {
+            return JSON.parse(localStorage.getItem('user'));
+        }
+
+        function clearUserData() {
+            localStorage.removeItem('user');
+        }
+
+        function authenticateUser(email, password) {
+            const user = getUserData();
+            return user && user.email === email && user.password === password;
+        }
+
+        function updateUIForLoggedInUser(name) {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'none';
+            welcomeSection.style.display = 'block';
+            userNameDisplay.textContent = name;
+        }
+
+        // Registration
+        registerBtn.addEventListener('click', () => {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (name && email && password) {
+                saveUserData(name, email, password);
+                alert('Registration successful! Please login.');
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Login
+        loginBtn.addEventListener('click', () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (authenticateUser(email, password)) {
+                const user = getUserData();
+                updateUIForLoggedInUser(user.name);
+            } else {
+                alert('Invalid email or password.');
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            clearUserData();
+            welcomeSection.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+
+        // Check if user is already logged in
+        const user = getUserData();
+        if (user) {
+            updateUIForLoggedInUser(user.name);
+        }
+    </script>
+</body>
+
+</html>

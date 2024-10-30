@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore courses: TechableX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .headerStrip {
+            background-color: #007bbf;
+            /* Blue strip color */
+            padding: 10px 20px;
+            position: relative;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero {
+            background-image: linear-gradient(to bottom right, #060fbca4, #004d40);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+
+        .card {
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #chatbot {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        #chatbotHeader {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #chatMessages {
+            height: 200px;
+            overflow-y: auto;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .userMessage {
+            background-color: #e1ffc7;
+            align-self: flex-end;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .botMessage {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        #chatInput {
+            display: flex;
+            padding: 10px;
+        }
+
+        #chatInput input {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        #voiceBtn {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* New Chat to Audio Section */
+        #textToAudio {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* About and Contact Sections */
+        #aboutUs,
+        #contactUs {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .xyz {
+            display: flex;
+            color: white;
+
+        }
+
+
+
+        .link {
+            color: white;
+            margin-right: 20px;
+
+        }
+        .course-box {
+                        width: 300px;
+                        border: 1px solid #ccc;
+                        padding: 20px;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        border-radius: 10px;
+                        background-color: #fff;
+                        text-align: center;
+                    }
+
+                    .course-box h2 {
+                        font-size: 22px;
+                        margin-bottom: 10px;
+                    }
+
+                    .course-box p {
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                    }
+
+                    .course-box .price {
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 20px;
+                    }
+
+                    .course-box ul {
+                        list-style-type: none;
+                        padding: 0;
+                    }
+
+                    .course-box ul li {
+                        margin-bottom: 10px;
+                        text-align: left;
+                    }
+
+                    .course-box button {
+                        background-color: #28a745;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        margin: 5px;
+                    }
+
+                    .course-box button:hover {
+                        background-color: #218838;
+                    }
+
+                    .course-box .explore-btn {
+                        background-color: #007bff;
+                    }
+
+                    .course-box .explore-btn:hover {
+                        background-color: #0056b3;
+                    }
+                    .course-list{
+                        display: flex;
+                        justify-content: space-evenly;
+                        margin-top: 20px;
+                    }
+    </style>
+</head>
+<body>
+    <div class="headerStrip">
+        <img src="Screenshot 2024-09-27 132923.png" alt="Techable X Logo" style="height: 50px;">
+        <!-- Techable X Logo -->
+        <div class="xyz">
+            <a href="login.html" class="link">
+                <div>Login</div>
+            </a>
+            <div id="dateTime"></div>
+        </div>
+    </div>
+
+    <div class="course-list">
+    <!-- Blind Section -->
+    <div class="course-box">
+        <h2>Blind Section Course</h2>
+        <p>This course is designed to provide support and training for the blind community.</p>
+        <ul>
+            <li>Video 1: Introduction to Blind Support</li>
+            <li>Video 2: Learning Techniques for the Blind</li>
+            <li>Video 3: Tools and Resources</li>
+        </ul>
+        <p class="price">$99</p>
+        <button onclick="buyBlind()">Buy Now</button>
+        <button class="explore-btn" onclick="exploreBlind()">Explore Course</button>
+    </div>
+
+    <!-- Deaf Section -->
+    <div class="course-box">
+        <h2>Deaf Section Course</h2>
+        <p>This course covers techniques and communication strategies for the deaf.</p>
+        <ul>
+            <li>Video 1: Sign Language Basics</li>
+            <li>Video 2: Advanced Sign Language</li>
+            <li>Video 3: Deaf Culture and Community</li>
+        </ul>
+        <p class="price">$99</p>
+        <button onclick="buyDeaf()">Buy Now</button>
+        <button class="explore-btn" onclick="exploreDeaf()">Explore Course</button>
+    </div>
+
+    <!-- Autistic Section -->
+    <div class="course-box">
+        <h2>Autistic Section Course</h2>
+        <p>Focus on supporting individuals with autism through learning strategies and resources.</p>
+        <ul>
+            <li>Video 1: Understanding Autism</li>
+            <li>Video 2: Effective Communication with Autistic Individuals</li>
+            <li>Video 3: Autism and Education</li>
+        </ul>
+        <p class="price">$99</p>
+        <button onclick="buyAutistic()">Buy Now</button>
+        <button class="explore-btn" onclick="exploreAutistic()">Explore Course</button>
+    </div>
+</div>
+</body>
+</html>
